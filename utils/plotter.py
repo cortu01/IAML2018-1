@@ -47,12 +47,24 @@ def plot_hinton(matrix, max_weight=None, ax=None):
     ax.invert_yaxis()
 	
 
-def plot_confusion_matrix(cm, classes=None, title='Confusion matrix'):
+def plot_confusion_matrix(cm, classes=None, norm=True, title='Confusion matrix', ax=None, **kwargs):
     """Plots a confusion matrix."""
-    if classes is not None:
-        sns.heatmap(cm, xticklabels=classes, yticklabels=classes, vmin=0., vmax=1., annot=True)
+    heatmap_kwargs = dict(annot=True, fmt='d')
+    if norm:
+        cm_norm = cm/cm.sum(axis=1)[:, np.newaxis]
+        heatmap_kwargs['data'] = cm_norm
+        heatmap_kwargs['vmin']=0.
+        heatmap_kwargs['vmax']=1.
+        heatmap_kwargs['fmt']='.3f'
     else:
-        sns.heatmap(cm, vmin=0., vmax=1.)
+        heatmap_kwargs['data'] = cm
+    if classes is not None:
+        heatmap_kwargs['xticklabels']=classes
+        heatmap_kwargs['yticklabels']=classes
+    if ax is not None:
+        heatmap_kwargs['ax'] = ax
+    heatmap_kwargs.update(kwargs)
+    sns.heatmap(**heatmap_kwargs)
     plt.title(title)
     plt.ylabel('True label')
     plt.xlabel('Predicted label')
