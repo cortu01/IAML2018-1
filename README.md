@@ -124,20 +124,18 @@ that conda installed a dependency of numpy (a python package)...python!
 Before installing required modules, we need to obtain the repository since it includes the specifications of the packages to use (as well as all lab material). Within your terminal:
 
 1. Navigate back to your home directory: `cd`
-2. Make a new directory and navigate to it
-    * `mkdir iaml2018`
+1. Now you have two options:
+    1. If **and only if** you are familiar and confident with using Git/GitHub, you can initialize a git directory, add the above repo as remote and pull everything into your local directory, something like:
+        * `git clone https://github.com/michael-camilleri/IAML2018 iaml2018
+    1. **OTHERWISE**, we recommend that you directly download a .zip file from https://github.com/michael-camilleri/IAML2018 which will contain everything you need and save it in the folder you have just created. You can do this from the terminal by typing (this also makes the directory structure equivalent to that obtained by git clone):
+        * `wget https://github.com/michael-camilleri/IAML2018/archive/master.zip`
+        * `unzip master.zip`
+        * `mv IAML2018-master iaml2018`
+1. Navigate to the new directory
     * `cd iaml2018
 
-Now you have two options:
-
-1. We recommend that you directly download a .zip file from https://github.com/michael-camilleri/IAML2018 which will contain everything you need and save it in the folder you have just created. You can do this from the terminal by typing:
-    * `wget https://github.com/michael-camilleri/IAML2018/archive/master.zip`
-    * `unzip master.zip`
-1. If **and only if** you are familiar and confident with using Git/GitHub, you can initialize a git directory, add the above repo as remote and pull everything into your local directory, something like:
-    * `git clone https://github.com/michael-camilleri/IAML2018 ~/iaml2018/
-
 ### *IMPORTANT*
-Supporting and teaching git is not in scope for this course so please only do this if you are happy to google your own solutions! That being said, git is a better alternative if you are familiar with it. We reccommend that you work with your own branch/fork as the git repository is read-only.
+Supporting and teaching git is not in scope for this course so please only use it if you are happy to google your own solutions! That being said, git is a better alternative if you are familiar with it. We reccommend that you work with your own branch/fork as the git repository is read-only.
 
 ## 5. Install all the packages for IAML
 1. Activate the environment: ```source activate py3iaml```
