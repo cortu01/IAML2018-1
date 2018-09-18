@@ -131,8 +131,9 @@ Before installing required modules, we need to obtain the repository since it in
         * `wget https://github.com/michael-camilleri/IAML2018/archive/master.zip`
         * `unzip master.zip`
         * `mv IAML2018-master iaml2018`
+        * `rm master.zip`
 1. Navigate to the new directory
-    * `cd iaml2018
+    * `cd iaml2018`
 
 ### *IMPORTANT*
 Supporting and teaching git is not in scope for this course so please only use it if you are happy to google your own solutions! That being said, git is a better alternative if you are familiar with it. We reccommend that you work with your own branch/fork as the git repository is read-only.
@@ -158,7 +159,7 @@ stored. *You will have to follow this procedure for all labs and assignments.*
 3. Start a jupyter notebook
     * `jupyter notebook`
 4. This should automatically open your browser
-    * Click on `01_Lab_0_Introduction.ipynb` to open it
+    * Click on `01_Lab_0_Introduction.ipynb` to open it (it exists under the Labs directory)
 
 ## Further Reading
 
@@ -177,7 +178,7 @@ be allocated to you!
     1. `freespace`
     1. If you don't have enough space, follow the instructions on [this page](
         http://computing.help.inf.ed.ac.uk/afs-quotas)
-1. Try instaling packages individually and executing `conda clean --all` after
+1. Try installing packages individually and executing `conda clean --all` after
 each installation
 
 ### Trashing your environment
