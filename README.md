@@ -1,4 +1,4 @@
-# Introductory applied machine learning (INFR10069)
+# Introductory applied machine learning (INFR10069/11152/11182)
 
 These instructions are written for set up on DICE / a Unix environment.
 
@@ -18,7 +18,7 @@ http://computing.help.inf.ed.ac.uk/vdice
 * please follow conda installation instructions on their
 website [here](https://conda.io/docs/user-guide/install/index.html)
 * to activate the `py3iaml` environment, note that you don't type `source activate py3iaml`
-but instead just `activate py3iaml`
+but instead use `conda activate py3iaml`
 * you can ignore section 3b (though you can google windows equivalents of all
   the Unix commands given)
 
@@ -221,16 +221,13 @@ source ~/.brc
 ```
 
 ### 'source' is not recognized as an internal or external command, ...
-You're on windows aren't you! Please see the note at the top of the file (you
-can omit `source`)
+You're on windows aren't you! Please see the note at the top of the file (replace `source` with `conda`)
 
 ### 'which' is not recognized as an internal or external command, ...
-You're on windows aren't you! Please see the note at the top of the file (
-`which` = `where` on windows).
+You're on windows aren't you! Please see the note at the top of the file (`which` = `where` on windows).
 
 ### $PATH?
-You're on windows aren't you! Please see the note at the top of the file (
-`echo $PATH` == `echo %PATH%` on windows).
+You're on windows aren't you! Please see the note at the top of the file (`echo $PATH` == `echo %PATH%` on windows).
 
 ### I can't find my conda environment....but I definitely created it
 We have found that people also taking MLP and/or ANLP (other courses that use
