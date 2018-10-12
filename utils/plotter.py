@@ -61,13 +61,14 @@ def plot_confusion_matrix(cm, classes=None, norm=True, title='Confusion matrix',
     if classes is not None:
         heatmap_kwargs['xticklabels']=classes
         heatmap_kwargs['yticklabels']=classes
-    if ax is not None:
-        heatmap_kwargs['ax'] = ax
+    if ax is None:
+        ax = plt.gca()
+    heatmap_kwargs['ax'] = ax
     heatmap_kwargs.update(kwargs)
     sns.heatmap(**heatmap_kwargs)
-    plt.title(title)
-    plt.ylabel('True label')
-    plt.xlabel('Predicted label')
+    ax.set_title(title)
+    ax.set_ylabel('True label')
+    ax.set_xlabel('Predicted label')
 	
 	
 def scatter_jitter(arr1, arr2, jitter=0.2):
