@@ -85,3 +85,50 @@ def scatter_jitter(arr1, arr2, jitter=0.2):
     arr1 = arr1 + jitter*arr1.std(axis=0)*np.random.standard_normal(arr1.shape)
     arr2 = arr2 + jitter*arr2.std(axis=0)*np.random.standard_normal(arr2.shape)
     plt.scatter(arr1, arr2, marker=4)
+
+def plot_SVM_DecisionBoundary(clfs, X, y, title=None):
+    """
+    Plots decision boundaries for classifiers with 2D inputs.
+    
+    Acknowldgement: Based on Example in http://scikit-learn.org/%SCIKIT_VERSION%/auto_examples/svm/plot_iris.html
+    
+    Parameters
+    ----------
+    clf : list
+        Classifiers for which decision boundaries will be displayed. These should have been already trained (fit)
+        with the necessary data.
+    X : array
+        Input features used to train the classifiers.
+    y : array
+        Class Labels corresponding to each row of X
+    title : list, optional
+        Titles for classifiers.
+    
+    """
+    
+    assert X.shape[1] == 2 # Input should be 2D
+    if title is not None:
+        assert len(clfs) == len(title)
+    
+    h = .04 # step size in the mesh
+    x_min, x_max = X[:, 0].min() - 1, X[:, 0].max() + 1
+    y_min, y_max = X[:, 1].min() - 1, X[:, 1].max() + 1
+    xx, yy = np.meshgrid(np.arange(x_min, x_max, h),
+                         np.arange(y_min, y_max, h))
+    plt.figure(figsize=(15,5))
+    for i, clf in enumerate(clfs):
+        plt.subplot(1, len(clfs), i + 1)
+        plt.subplots_adjust(wspace=0.4, hspace=0.4)
+        Z = clf.predict(np.c_[xx.ravel(), yy.ravel()])
+        Z = Z.reshape(xx.shape)
+        plt.contourf(xx, yy, Z, cmap=plt.cm.Paired, alpha=0.8)
+        # Training points
+        plt.scatter(X[:, 0], X[:, 1], c=y, cmap=plt.cm.Paired)
+        plt.xlabel('Feature 1')
+        plt.ylabel('Feature 2')
+        plt.xlim(xx.min(), xx.max())
+        plt.ylim(yy.min(), yy.max())
+        plt.xticks(())
+        plt.yticks(())
+        if title is not None:
+            plt.title(title[i])
