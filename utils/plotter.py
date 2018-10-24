@@ -86,7 +86,8 @@ def scatter_jitter(arr1, arr2, jitter=0.2):
     arr2 = arr2 + jitter*arr2.std(axis=0)*np.random.standard_normal(arr2.shape)
     plt.scatter(arr1, arr2, marker=4)
 
-def plot_SVM_DecisionBoundary(clfs, X, y, title=None):
+    
+def plot_SVM_DecisionBoundary(clfs, X, y, title=None, labels=None):
     """
     Plots decision boundaries for classifiers with 2D inputs.
     
@@ -103,6 +104,8 @@ def plot_SVM_DecisionBoundary(clfs, X, y, title=None):
         Class Labels corresponding to each row of X
     title : list, optional
         Titles for classifiers.
+    labels : list, optional
+        Feature names (in order as they appear in X)
     
     """
     
@@ -124,8 +127,12 @@ def plot_SVM_DecisionBoundary(clfs, X, y, title=None):
         plt.contourf(xx, yy, Z, cmap=plt.cm.Paired, alpha=0.8)
         # Training points
         plt.scatter(X[:, 0], X[:, 1], c=y, cmap=plt.cm.Paired)
-        plt.xlabel('Feature 1')
-        plt.ylabel('Feature 2')
+        if labels is not None:
+            plt.xlabel(labels[0])
+            plt.ylabel(labels[1])
+        else:
+            plt.xlabel('Feature 1')
+            plt.ylabel('Feature 2')
         plt.xlim(xx.min(), xx.max())
         plt.ylim(yy.min(), yy.max())
         plt.xticks(())
