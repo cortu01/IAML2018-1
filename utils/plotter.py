@@ -139,3 +139,40 @@ def plot_SVM_DecisionBoundary(clfs, X, y, title=None, labels=None):
         plt.yticks(())
         if title is not None:
             plt.title(title[i])
+
+
+def plot_voronoi(predictor, _range, sampling=100, clr_map='Set1'):
+    """
+    Method for plotting a Voronoi Diagram
+
+    (Example adapted from http://scikit-learn.org/stable/auto_examples/cluster/plot_kmeans_digits.html)
+
+    :param predictor:   An Object which implements the SKLearn Predictor Interface (i.e. exposes predict). N.B.
+                            the first dimension is plotted along X and the second along Y.
+    :param range:       Plot Limit [X_Min, X_Max, Y_Min, Y_Max]
+    :param sampling:    Number of samples to tessellate the range with: if a single number, then use same resolution
+                        for both axes: otherwise must be an array_like of size 2, for samples along X/Y respectively.
+    :param clr_map:     Colour Map name to use (defaults to 'Set1')
+    :return:            Axes Object
+    """
+    # Sort out the Parameters
+    x_min, x_max, y_min, y_max = _range
+    if hasattr(sampling, '__len__'):
+        assert len(sampling) == 2, 'sampling must be of size 2 or a scalar'
+        step_x = (x_max - x_min)/sampling[0]
+        step_y = (y_max - y_min)/sampling[1]
+    else:
+        step_x = (x_max - x_min) / sampling
+        step_y = (y_max - y_min) / sampling
+
+    # Create Mesh and Predict on it
+    xx, yy = np.meshgrid(np.arange(x_min, x_max, step_x), np.arange(y_min, y_max, step_y))
+    zz = predictor.predict(np.c_[xx.ravel(), yy.ravel()]).reshape(xx.shape)
+
+    # Create Color Map
+    _N = zz.max() - zz.min() + 1
+    cmap = plt.get_cmap(clr_map, _N)
+    
+    # Plot 
+    return plt.imshow(zz, interpolation='nearest', extent=_range, aspect='auto', origin='lower', 
+                      alpha=.5, cmap=cmap, vmin=-0.5, vmax=_N-0.5)
