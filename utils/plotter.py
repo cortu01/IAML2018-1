@@ -177,23 +177,3 @@ def plot_voronoi(predictor, _range, sampling=100, clr_map='Set1'):
     return plt.imshow(zz, interpolation='nearest', extent=_range, aspect='auto', origin='lower', 
                       alpha=.5, cmap=cmap, vmin=-0.5, vmax=_N-0.5)
 
-
-def plot_digit(_image, _range=(0, 255), _invert_clr=True, ax=None):
-    """
-    Plot a digit in grayscale using imshow
-
-    :param _image: The image to plot: this must be a 2D array
-    :param _range: The range of possible values governing full-scale for each pixel
-    :param _invert_clr: Whether to plot higher-values towards black (if True) or towards white (if False)
-    :param ax: The axes to plot on.
-    :return The result of imshow()
-    """
-    # Normalise Image first
-    _image_norm = (_image - _range[0]) / (_range[1] - _range[0])
-    # If Need be Invert
-    if not _invert_clr: _image_norm = 1.0 - _image_norm
-    # Resolve Axis
-    if ax is None: ax = plt.gca()
-    # Show Image
-    return ax.imshow(_image_norm, cmap='binary', vmin=0, vmax=1)
-
